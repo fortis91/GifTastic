@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GifTastic</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- jQuery Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="assets/images/check-mark.png">
+    <!-- <link rel="stylesheet" href="assets/css/style.css"> -->
+</head>
+
+<body>
+    <header></header>
+    <main>
+        <section>
+            <div class="jumbotron">
+                <h1 class="display-4">GifTastic</h1>
+                <p class="lead"></p>
+                <hr class="my-4">
+
+                <!-- <div id="gifs-buttons-view"></div> -->
+                <div id="buttons-view"></div>
+                <form id="gif-form">
+                    <label for="gif-input">Add GIF</label>
+                    <input type="text" id="gif-input">
+                    <input id="add-gif" type="submit" value=" Add ">
+                    <input id="clear-gifs" type="submit" value="Clear">
+                </form>
+                <!-- <div id="gifs-view"></div> -->
+                <div class="row text-center text-lg-left" id="gifs-view"> </div>
+
+        </section>
+    </main>
+
+    <footer></footer>
+    <script src="assets/javascript/api.js"></script>
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
