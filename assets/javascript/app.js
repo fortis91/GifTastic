@@ -4,10 +4,12 @@ $(document).ready(function () {
     const apiKey = "lIs3ok8bg7ciOQExZvbuD2howm6mCwTe";
     const rating = "G";
     const lang = "eng";
-    const limit = 4;
+    const limit = 2;
 
     var gifs = [];
+    var topics = [];
     var gifObjs = [];
+    var gifKey = 0;
 
     // $("button").on("click", function () {
     //     console.log("button click");
@@ -18,20 +20,21 @@ $(document).ready(function () {
     //renderButtons(); //tooo start will have no buttons to render
 
     // $(document).on("click", ".gif", changeState);
-    $(document).on("click", ".gif", function () {
-        var id = $(this).attr("id");
-        var state = $(this).attr("gif-state");
-        console.log(id + "/" + state);
-        if (state == "animate") {
-            $(this).attr("src", gifObjs[id].still);
-            $(this).attr("gif-state", "still");
-        }
-        else {
-            $(this).attr("src", gifObjs[id].animate);
-            $(this).attr("gif-state", "animate");
-        }
+    // $(document).on("click", ".gif", function () {
+    //     var id = $(this).attr("id");
+    //     var state = $(this).attr("gif-state");
+    //     console.log("click on gif: " + id);
 
-    });
+    //     if (state == "animate") {
+    //         $(this).attr("src", gifObjs[id].still);
+    //         $(this).attr("gif-state", "still");
+    //     }
+    //     else {
+    //         $(this).attr("src", gifObjs[id].animate);
+    //         $(this).attr("gif-state", "animate");
+    //     }
+
+    // });
 
 
     //todo: clear = gifs / reset = all
@@ -40,78 +43,60 @@ $(document).ready(function () {
         event.preventDefault();
         gifs = [];
         gifObjs = [];
+        topics = [];
         // $("#buttons-view").empty();
         $('#gifs-view').empty();
         console.clear();
     });
 
 
-    function retrieveData() {
-        console.log("retrieve data");
-        // var apiKey = "lIs3ok8bg7ciOQExZvbuD2howm6mCwTe";
-        // var rating = "G";
-        // var lang = "eng";
-        // var limit = 5;
-        var animal = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-            animal + "&api_key=" + apiKey + "&limit=" + limit + "&rating=" + rating + "&lang=" + lang;
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).then(function (response) {
-            //console.log(response.data);
-            var results = response.data;
-            formatJSON(results);
-        });
-    }
+    // function retrieveData() {
+    //     console.log("retrieve data");
+    //     var results = [];
+    //     var animal = $(this).attr("data-name");
+    //     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+    //         animal + "&api_key=" + apiKey + "&limit=" + limit + "&rating=" + rating + "&lang=" + lang;
+    //     $.ajax({
+    //         url: queryURL,
+    //         method: "GET"
+    //     }).then(function (response) {
+    //         console.log(response)
+    //         results = response.data;
+            
+    //         formatJSON(results);
+    //     });
+    // }
 
 
     var formatJSON = function (results) {
-        console.log("format JSON: "+results.length);
-        // gifObjs = [];
-        for (var i = 0; i < results.length; i++) {
-            // basic - push from results
-            // var gifDiv = $("<div>");
-            // var p = $("<p>");
-            // p.text(results[i].rating);
-            // var newImage = $("<img>");
-            // newImage.attr("src", results[i].images.fixed_height.url);
-            // gifDiv.append(p);
-            // gifDiv.append(newImage);
-            // $("#gifs-view").prepend(gifDiv);
+        gifObjs = [];
+        gifs = [];
+        $("#gifs-view").empty;
 
-            // create object
-            gifObjs.push({
-                key: i,
-                still: results[i].images.fixed_height_still.url,
-                animate: results[i].images.fixed_height.url
-            })
+        // console.log("format JSON result: "+results.length);
+        // gifObjs = [];
+        for (var i = 0; i < results.length; i++) {          
+            gifs.push(results[i]);
         }
 
-        // adding object
-        // for (i = 0; i < gifObjs.length; i++) {
-        //     var gifDiv = $("<div>");
-        //     var p = $("<p>");
-        //     p.text(gifObjs[i].rating);
-        //     var newImage = $("<img>");
-        //     newImage.attr("src", gifObjs[i].animate);
-        //     newImage.attr("gif-state", "animate");
-        //     newImage.attr("class", "gif");
-        //     newImage.attr("id", i)
-        //     gifDiv.append(p);
-        //     gifDiv.append(newImage);
-        //     $("#gifs-view").prepend(gifDiv);
-        // }
+        for (var j = 0; j < gifs.length; j++) {
+            console.log("gifKey: " + gifKey);
+            gifObjs.push({
+                key: gifKey,
+                still: gifs[j].images.fixed_height_still.url,
+                animate: gifs[j].images.fixed_height.url
+            })
+            gifKey++;
+        }
 
+                // $("#gifs-view").empty();
 
-        //create bootstrap gallery
-        // <div class="col-lg-3 col-md-4 col-6">
-        //     <a href="#" class="d-block mb-4 h-100">
-        //         <img class="img-fluid img-thumbnail" src="https://source.unsplash.com/pWkk7iiCoDM/400x300" alt="">
-        //   </a>
-        // </div>
-
+        // console.log("gif objs: "+gifObjs);
         for (var i = 0; i < gifObjs.length; i++) {
+            console.log(gifObjs[i].key);
+            console.log(gifObjs[i].still);
+            console.log(gifObjs[i].animate);
+            // console.log(gifObjs[i].image);
             var gifDiv = $('<div>');
             gifDiv.attr("class", "col-lg-3 col-md-4 col-6");
 
@@ -124,21 +109,21 @@ $(document).ready(function () {
             image.attr("gif-state", "still");
             image.attr("alt", "");
             image.attr("class", "gif img-fluid img-thumbnail");
-            image.attr("id", i)
+            // image.attr("id", i);
+            image.attr("id", gifObjs[i].key);
 
             gifDiv.append(a, image);
             $("#gifs-view").prepend(gifDiv);
             // $("#gifs-view").append(gifDiv);
         }
-        console.log(gifObjs);
     }
 
 
     $("#add-gif").on("click", function (event) {
         console.log("add gif");
         event.preventDefault();
-        var gif = $("#gif-input").val().trim();
-        gifs.push(gif);
+        var topic = $("#gif-input").val().trim();
+        topics.push(topic);
         renderButtons();
     });
 
@@ -147,11 +132,11 @@ $(document).ready(function () {
         console.log("render buttons");
         $("#buttons-view").empty();
 
-        for (var i = 0; i < gifs.length; i++) {
+        for (var i = 0; i < topics.length; i++) {
             var a = $("<button>");
             a.addClass("gif-btn");
-            a.attr("data-name", gifs[i]);
-            a.text(gifs[i]);
+            a.attr("data-name", topics[i]);
+            a.text(topics[i]);
             $("#buttons-view").append(a);
         }
     }
@@ -159,8 +144,7 @@ $(document).ready(function () {
 
     var init = function () {
         console.clear();
-
-        gifs = ["cat", "dog", "computer"]
+        topics = ["cat", "dog", "computer"]
         renderButtons();
     }
 
