@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GifTastic</title>
+
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
     <!-- jQuery Library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Bootstrap-->
@@ -27,23 +29,28 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-9" id="gifs-view">
+                <div class="col-md-9 clearfix" id="gifs-view">
                 </div>
                 <div class="col-md-3">
                     <form id="gif-form">
-                        <label for="gif-input">Add GIF</label><br>
+                        <label for="gif-input">Add Topic</label><br>
                         <input type="text" id="gif-input">
-                        <input id="add-gif" type="submit" value=" Add ">
-                        <input id="clear-gifs" type="submit" value="Clear">
+                        <input type="button" class="btn btn-primary" id="add-gif" type="submit" value=" Add ">
+                        <input type="button" class="btn btn-primary" id="clear-gifs" type="submit" value="Clear">
                     </form>
                 </div>
+                <!-- <div class="form-check-inline">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" value="">Animate
+                    </label>
+                </div> -->
             </div>
         </div>
     </main>
 
     <footer></footer>
     <script src="assets/javascript/api.js"></script>
-    <!-- <script src="assets/javascript/app.js"></script> -->
+    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>

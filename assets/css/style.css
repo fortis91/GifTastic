@@ -38,3 +38,44 @@ img {
     height: 500px;
     width: inherit;
 }
+
+
+
+
+
+
+
+
+
+
+html {
+    border: 10px;
+    margin: 10px;
+    border: 10px;
+}
+body {
+    background-color: #8D99AE;
+}
+button {
+    /* padding: 5px; */
+    margin: 1px;
+    /* border: 5px; */
+}
+
+
+.col-md-12 {
+    padding: 0px;
+}
+
+.card {
+    float: left;
+    width: 33.3%;
+    height: 300px;
+}
+
+.card-body, .card-title, .card-text{
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+}
