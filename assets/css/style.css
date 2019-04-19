@@ -22,6 +22,19 @@ p {
     margin-bottom: auto;
 }
 
+#gifs-view {
+    padding: 0px;
+}
 figure {
     float: left;
+}
+
+button {
+    /* color: white;
+    background-color: blue; */
+}
+
+img {
+    height: 500px;
+    width: inherit;
 }

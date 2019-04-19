@@ -24,7 +24,6 @@ $(document).ready(function () {
     //     var id = $(this).attr("id");
     //     var state = $(this).attr("gif-state");
     //     console.log("click on gif: " + id);
-
     //     if (state == "animate") {
     //         $(this).attr("src", gifObjs[id].still);
     //         $(this).attr("gif-state", "still");
@@ -36,6 +35,23 @@ $(document).ready(function () {
 
     // });
 
+    // from api.js
+    $(document).on("click", ".gif", function () {
+        console.log("click");
+        var id = $(this).attr("id");
+        var state = $(this).attr("gif-state");
+        console.log("click on gif: " + id);
+
+        if (state == "animate") {
+            $(this).attr("src", gifObjs[id].still);
+            $(this).attr("gif-state", "still");
+        }
+        else {
+            $(this).attr("src", gifObjs[id].animate);
+            $(this).attr("gif-state", "animate");
+        }
+
+    });
 
     //todo: clear = gifs / reset = all
     $("#clear-gifs").on("click", function () {
@@ -50,22 +66,22 @@ $(document).ready(function () {
     });
 
 
-    // function retrieveData() {
-    //     console.log("retrieve data");
-    //     var results = [];
-    //     var animal = $(this).attr("data-name");
-    //     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    //         animal + "&api_key=" + apiKey + "&limit=" + limit + "&rating=" + rating + "&lang=" + lang;
-    //     $.ajax({
-    //         url: queryURL,
-    //         method: "GET"
-    //     }).then(function (response) {
-    //         console.log(response)
-    //         results = response.data;
-            
-    //         formatJSON(results);
-    //     });
-    // }
+    function retrieveData() {
+        console.log("retrieve data");
+        var results = [];
+        var animal = $(this).attr("data-name");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            animal + "&api_key=" + apiKey + "&limit=" + limit + "&rating=" + rating + "&lang=" + lang;
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response)
+            results = response.data;
+
+            formatJSON(results);
+        });
+    }
 
 
     var formatJSON = function (results) {
@@ -75,7 +91,7 @@ $(document).ready(function () {
 
         // console.log("format JSON result: "+results.length);
         // gifObjs = [];
-        for (var i = 0; i < results.length; i++) {          
+        for (var i = 0; i < results.length; i++) {
             gifs.push(results[i]);
         }
 
@@ -89,9 +105,9 @@ $(document).ready(function () {
             gifKey++;
         }
 
-                // $("#gifs-view").empty();
+        // $("#gifs-view").empty();
 
-        // console.log("gif objs: "+gifObjs);
+        console.log(gifObjs);
         for (var i = 0; i < gifObjs.length; i++) {
             console.log(gifObjs[i].key);
             console.log(gifObjs[i].still);
