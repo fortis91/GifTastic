@@ -4,7 +4,7 @@ html {
     border: 10px;
 }
 body {
-        background-image: url('../images/cork_1.png');
+    background-image: url('../images/cork_1.png');
     background-color: lavenderblush;
 }
 
@@ -39,6 +39,14 @@ img {
     width: inherit;
 }
 
+.col-md-3 img{
+    height: 20px;
+    width: 20px
+}
+.card-body img {
+    height: 5px;
+    width: 5px;
+}
 
 
 

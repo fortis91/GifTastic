@@ -72,28 +72,23 @@ $(document).ready(function () {
         $("#gifs-view").empty();
         for (var i = 0; i < gifObjs.length; i++) {
             var card = $('<div>').addClass("card");
-            // card.addClass("card");
             var image = $('<img>');
             image.attr("src", gifObjs[i].still);
             image.attr("data-state", "still");
             image.attr("class", "gif card-img-top");
             image.attr("id", gifObjs[i].key);
-            // card.append(image);
-            var cardBody = $('<div>').addClass("card-body");//.html("Rating: "+gifObjs[i].rating);
+            var cardBody = $('<div>').addClass("card-body");
             var cardTitle = $('<p>').addClass("card-title").html("Title: " + gifObjs[i].title);
-            var cardText = $('<p>').addClass("card-text").html("Rating: " + gifObjs[i].rating);// + "<br>" + gifObjs[i].embed_url);
-            // var link =$('<a href=+>').html("link");
+            var cardText = $('<p>').addClass("card-text").html("Rating: " + gifObjs[i].rating);
             var link = $('<a>', {
                 text: 'See more link this',
                 target: '_new',
-                // title: 'some title',
                 href: gifObjs[i].embed_url
             }).appendTo('body');
-            cardBody.append(cardTitle, cardText, link);
-            // cardBody.addClass("card-body");
-            // var h = $('<p>').html(gifObjs[i].title);
-            // var p = $('<p>').text("Rating: " + gifObjs[i].rating.toUpperCase());
-            // cardBody.append(h,p);
+            // var like = $('<img>').attr("src", "../assets/images/icons8-nolike-50.png");
+
+            // like.css("height: 25px", "width: 20px");
+            cardBody.append(cardTitle, cardText, link);//, like);
             card.append(image, cardBody);
             $("#gifs-view").prepend(card);
         }
@@ -101,8 +96,7 @@ $(document).ready(function () {
 
 
     var changeState = function (gifObj) {
-        console.log("change state: " + $(gifObj).attr("id") + "/" + $(gifObj).attr("data-state"));
-        console.log($(gifObj).attr("id") + "/" + $(gifObj).attr("data-state"));
+        console.log("change state");
         var id = $(gifObj).attr("id");
         var state = $(gifObj).attr("data-state");
 
@@ -124,7 +118,6 @@ $(document).ready(function () {
         for (var i = 0; i < topics.length; i++) {
             var a = $("<button>");
             a.addClass("gif-btn btn btn-success btn-sm");
-            // a.attr("height", "10px");
             a.attr("data-name", topics[i]);
             a.text(topics[i]);
             $("#buttons-view").append(a);
@@ -194,9 +187,16 @@ $(document).ready(function () {
         displayGIFSV2(state);
     }
     var init = function () {
-        //console.clear();
         renderButtons();
+        console.log(topics);
+        storeIt();
+        var data = JSON.parse(localStorage.getItem('topics'));
+        console.log(data);
         //retrieveData("computer");
+    }
+
+    var storeIt = function () {
+        localStorage.setItem('topics', JSON.stringify(topics));
     }
     init();
 
