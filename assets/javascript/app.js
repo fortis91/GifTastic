@@ -26,6 +26,17 @@ $(document).ready(function () {
         topics.push(topic);
         renderButtons();
     });
+    // $("#clear-gifs").on("click", function () {
+    //     console.log("clear movies");
+    //     event.preventDefault();
+    //     gifs = [];
+    //     gifObjs = [];
+    //     topics = [];
+    //     // $("#buttons-view").empty();
+    //     $('#gifs-view').empty();
+    //     console.clear();
+    // });
+
     //listeners
 
     // var displayGIFS = function () {
