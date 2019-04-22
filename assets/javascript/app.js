@@ -1,7 +1,7 @@
 $(document).ready(function () {
     console.log("ready to go");
 
-    var topics = ["computer", "popcorn", "dog", "cat"]
+    var topics = ["computer", "popcorn", "matrix"]
     var gifs = [];
     var gifObjs = [];
     var gifKey = 0;
@@ -39,45 +39,7 @@ $(document).ready(function () {
 
     //listeners
 
-    // var displayGIFS = function () {
-    //     console.log("display gifs")
-    //     $("#gifs-view").empty();
-    //     for (var i = 0; i < gifObjs.length; i++) {
-    //         var gifDiv = $('<div>');
-    //         gifDiv.addClass("mdb-lightbox");
-    //         var figure = $('<figure>');
-    //         figure.addClass('col-md-4');
-
-    //         //     var p = $('<p>').html("Rating: " + gifObjs[i].rating.toUpperCase());
-    //         var image = $('<img>');
-    //         image.attr("src", gifObjs[i].still);
-    //         image.attr("data-state", "still");
-    //         image.attr("class", "gif img-fluid clearfix");
-    //         image.attr("id", gifObjs[i].key);
-    //         figure.append(image);
-    //         gifDiv.append(figure);
-    //         $("#gifs-view").prepend(gifDiv);
-    //     }
-    // }
-
-    // < div class="col-md-4 mb-4" >
-    //     <div class="card shadow"><img src="assets/images/pexels-photo-1374551.jpeg" alt="monday" class="card-img-top">
-    //         <div class="card-body">
-    //             Monday
-    //         </div>
-    //     </div>
-    // </div>
-
-    // <div class="card" style="width: 18rem;">
-    //     <img src="https://media2.giphy.com/media/tyqcJoNjNv0Fq/200_s.gif" class="card-img-top" alt="...">
-    //         <div class="card-body">
-    //             <h5 class="card-title">Card title</h5>
-    //             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-    //                             content.</p>
-    //             <a href="#" class="btn btn-primary">Go somewhere</a>
-    //         </div>
-    // </div>
-
+   
     var displayGIFS = function () {
         console.log("display gifs")
         $("#gifs-view").empty();
@@ -92,13 +54,10 @@ $(document).ready(function () {
             var cardTitle = $('<p>').addClass("card-title").html("Title: " + gifObjs[i].title);
             var cardText = $('<p>').addClass("card-text").html("Rating: " + gifObjs[i].rating);
             var link = $('<a>', {
-                text: 'See more link this',
+                text: 'See more like this',
                 target: '_new',
                 href: gifObjs[i].embed_url
             }).appendTo('body');
-            // var like = $('<img>').attr("src", "../assets/images/icons8-nolike-50.png");
-
-            // like.css("height: 25px", "width: 20px");
             cardBody.append(cardTitle, cardText, link);//, like);
             card.append(image, cardBody);
             $("#gifs-view").prepend(card);
